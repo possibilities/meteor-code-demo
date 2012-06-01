@@ -1,0 +1,39 @@
+<head>
+  <title>Meteor Simple Demo</title>
+</head>
+
+<body>
+  <h1>Meteor Simple Demo</h1>
+  <p>A simple way to display your app's source code <em>in</em> your app</p>
+
+  <div class="row">
+    <div class="span4">
+      <h2>Demo</h2> 
+      {{> demo}}
+    </div>
+    <div class="span6">
+      <h2>Code</h2>
+      <p>Your examples are pulled in from your public directory. You'll need to symlink your code to public/ or keep a copy of it there for this to work (for now).</p>
+      {{{code "demo/demo.html"}}}
+      {{{code "demo/client/demo.js"}}}
+      {{{code "demo/server/demo.js"}}}
+    </div>
+  </div>
+</body>
+
+<template name="demo">
+  <p>A really dumb example to show how this works</p>
+
+  <div class="well">
+    <p>
+      {{#if uuid}}
+        <strong>Your ID: </strong> {{uuid}}
+      {{else}}
+        <em>No ID, wtf¿!</em>
+      {{/if}}
+    </p>
+    <p>
+      <button class="btn btn-primary">Get ID From Server!</button>
+    </p>
+  </div>
+</template>
