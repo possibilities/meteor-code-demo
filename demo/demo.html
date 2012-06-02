@@ -3,22 +3,30 @@
 </head>
 
 <body>
-  <h1>Meteor Simple Demo</h1>
-  <p>A smart package to help display your app's source code <em>in</em> your app</p>
-
-  <div class="row">
-    <div class="span4">
-      <h2>Demo</h2> 
-      {{> demo}}
+  <div class="container">
+    <div class="row" class="span12">
+      <div class="span2">&nbsp;</div>
+      <div class="span8">
+        <h1>Meteor Simple Demo</h1>
+        <p><em>A smart package to help display your app's source code in your app</em></p>
+      </div>
     </div>
-    <div class="span6">
-      <h2>Code</h2>
-      <p>Your examples are pulled in from a github repo you specify in a <code>server</code> script.</p>
+    <div class="row" class="span12">
+      <div class="span2">&nbsp;</div>
+      <div class="span3">
+        <h2>Demo</h2> 
+        {{> demo}}
+      </div>
+      <div class="span5">
+        <h2>Code</h2>
+        <p>Your examples are pulled in from a github repo you specify in a <code>server</code> script.</p>
 
-      <!-- This is how you make the code show up! -->
-      {{{code "demo/client/demo.js"}}}
-      {{{code "demo/server/demo.js"}}}
-      {{{code "demo/demo.html"}}}
+        <!-- This is how you make the code show up! -->
+        {{{code "demo/client/demo.js"}}}
+        {{{code "demo/server/demo.js"}}}
+        {{{code "demo/demo.html"}}}
+      </div>
+      <div class="span2">&nbsp;</div>
     </div>
   </div>
 </body>
