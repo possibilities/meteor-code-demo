@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "A simple way to display your app's source code in your app"
+  summary: "A smart package to help display your app's source code in your app"
 });
 
 Package.on_use(function (api) {
