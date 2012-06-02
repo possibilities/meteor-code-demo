@@ -1,5 +1,5 @@
 pre {
-  margin-top: 20px;
+  margin-top: 20px !important;
   /* Make it match bootstrap wells */
   padding: 20px !important;
   border: 1px solid #eee !important;
