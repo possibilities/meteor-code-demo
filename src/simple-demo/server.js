@@ -33,6 +33,8 @@ Meteor.publish(null, function() {
   return GitHubSources.find();
 });
 
+// Github API
+
 GitHubRepo = function(params) {
   this.baseUri = 'api.github.com';
   this.ssl = true;
