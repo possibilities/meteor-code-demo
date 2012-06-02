@@ -11,5 +11,5 @@ Meteor.methods({
 SimpleDemo.load({
   user: 'possibilities',
   repo: 'meteor-simple-demo',
-  ref: 'master'
+  ref: 'master' // default
 });
