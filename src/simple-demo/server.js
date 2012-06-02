@@ -83,6 +83,8 @@ GitHubRepo.prototype.fetchAllSources = function() {
 GitHubRepo.prototype._getEnv = function(source) {
   var env;
 
+  // Some not super elegant logic to figure out what the
+  // environment label should be for a chunk of code
   if (source.path.search(/html/) >= 0
     && source.content.search(/<head>/) >= 0
     && source.content.search(/<body>/) >= 0
