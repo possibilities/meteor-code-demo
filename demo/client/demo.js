@@ -1,4 +1,4 @@
-// A really dumb example to show how this works
+// A really dumb example so we have some code to show!
 
 Template.demo.uuid = function() {
   return Session.get('uuid');
