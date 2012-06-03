@@ -22,7 +22,6 @@ SimpleDemo = {
       _.each(sources, function(source) {
         GitHubSources.insert(source);
       });
-      // console.log(sources.length);
     });
   }
 };
@@ -96,6 +95,8 @@ GitHubRepo.prototype._getEnv = function(source) {
     env = 'templates';
   } else if (source.path.search(/client/) >= 0) {
     env = 'client';
+  } else if (source.path.search(/common/) >= 0) {
+    env = 'common';
   } else if (source.path.search(/server/) >= 0) {
     env = 'server';
   }
