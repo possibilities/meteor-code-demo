@@ -7,7 +7,7 @@ Secure.noDataMagic('gitHubSources');
 
 SimpleDemo = {
   load: function(options) {
-    
+
     // Init github repo
     var repo = new GitHubRepo(options);
 
@@ -17,11 +17,11 @@ SimpleDemo = {
       // Pull everything in from github
       var sources = repo.fetchAllSources();
 
-      // Delete old ones, insert new ones
+      // Delete old ones
       GitHubSources.remove({});
-      _.each(sources, function(source) {
-        GitHubSources.insert(source);
-      });
+
+      // insert new ones
+      _.each(sources, GitHubSources.insert, GitHubSources);
     });
   }
 };
@@ -60,15 +60,16 @@ GitHubRepo.prototype.fetchAllSources = function() {
   var self = this;
   var types = ['html', 'js', 'txt', 'md', 'css'];
   var sources = [];
+  var ext, refHead, source;
 
   var refHead = this._head(this.ref);
 
   if (refHead) {
-    var refHeadSha = refHead.object.sha;
+    refHeadSha = refHead.object.sha;
     this._walkTree(refHeadSha, function handleBlob(blob) {
-      var ext = _.last(blob.path.split('.'));
+      ext = _.last(blob.path.split('.'));
       if (_.contains(types, ext)) {
-        var source = {
+        source = {
           content: self._blobContent(blob),
           path: blob.fullPath
         };
@@ -86,18 +87,18 @@ GitHubRepo.prototype._getEnv = function(source) {
 
   // Some not super elegant logic to figure out what the
   // environment label should be for a chunk of code
-  if (source.path.search(/html/) >= 0
-    && source.content.search(/<head>/) >= 0
-    && source.content.search(/<body>/) >= 0
+  if (/html/.test(source.path)
+    && /<head>/.test(source.content)
+    && /<body>/.test(source.content)
   ) {
     env = 'html';
-  } else if (source.path.search(/template/) >= 0) {
+  } else if (/template/.test(source.path)) {
     env = 'templates';
-  } else if (source.path.search(/client/) >= 0) {
+  } else if (/client/.test(source.path)) {
     env = 'client';
-  } else if (source.path.search(/common/) >= 0) {
+  } else if (/common/.test(source.path)) {
     env = 'common';
-  } else if (source.path.search(/server/) >= 0) {
+  } else if (/server/.test(source.path)) {
     env = 'server';
   }
   
@@ -106,9 +107,10 @@ GitHubRepo.prototype._getEnv = function(source) {
 
 GitHubRepo.prototype._walkTree = function(startSha, handleBlob, handleTree) {
   var self = this;
+  var tree = self._tree(startSha);
+
   self.pathParts || (self.pathParts = []);
 
-  var tree = self._tree(startSha);
   _.each(tree.tree, function(blobOrTree) {
     blobOrTree.fullPath = (self.pathParts.length === 0) ? blobOrTree.path : self.pathParts.join('/') + '/' + blobOrTree.path;
     if (blobOrTree.type === 'blob') {
