@@ -92,7 +92,7 @@ GitHubRepo.prototype._getEnv = function(source) {
     && /<body>/.test(source.content)
   ) {
     env = 'html';
-  } else if (/template/.test(source.path)) {
+  } else if (/(template|html)/.test(source.path)) {
     env = 'templates';
   } else if (/client/.test(source.path)) {
     env = 'client';
