@@ -5,7 +5,7 @@ _.mixin(_.string.exports());
 GitHubSources = new Meteor.Collection('gitHubSources');
 Secure.noDataMagic('gitHubSources');
 
-SimpleDemo = {
+CodeDemo = {
   load: function(options) {
 
     // Init github repo
@@ -19,7 +19,7 @@ SimpleDemo = {
 
       // Delete old ones
       GitHubSources.remove({});
-
+      
       // insert new ones
       _.each(sources, GitHubSources.insert, GitHubSources);
     });
@@ -61,10 +61,9 @@ GitHubRepo.prototype.fetchAllSources = function() {
   var types = ['html', 'js', 'txt', 'md', 'css'];
   var sources = [];
   var ext, refHead, source;
-
+  
   var refHead = this._head(this.ref);
-
-  if (refHead) {
+  if (refHead && refHead.object) {
     refHeadSha = refHead.object.sha;
     this._walkTree(refHeadSha, function handleBlob(blob) {
       ext = _.last(blob.path.split('.'));
@@ -77,8 +76,10 @@ GitHubRepo.prototype.fetchAllSources = function() {
         sources.push(source);
       }
     });
+  } else {
+    // throw "Could not find repo: " + this.user + "/" + this.repo + ", ref: " + this.ref;
   }
-  
+
   return sources;
 };
 

@@ -8,7 +8,7 @@ Meteor.methods({
 
 // This is how I load myself into myself
 
-SimpleDemo.load({
+CodeDemo.load({
   user: 'possibilities',
   repo: 'meteor-simple-demo',
   ref: 'master' // default

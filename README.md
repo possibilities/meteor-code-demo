@@ -1,4 +1,4 @@
-# Meteor Simple Demo
+# Meteor Code Demo
 
 A smart package to help display your app's source code *in* your app
 
