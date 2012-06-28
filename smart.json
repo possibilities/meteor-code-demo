@@ -1,0 +1,10 @@
+{
+  "packages": {
+    "party": {
+      "git": "https://github.com/possibilities/meteor-party.git"
+    },
+    "simple-secure": {
+      "git": "https://github.com/possibilities/meteor-simple-secure.git"
+    }
+  }
+}
